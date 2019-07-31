@@ -30,8 +30,7 @@ public class CompanyServiceImpl implements CompanyService {
 	@Transactional
 	public Company create(Company company) {
 		logger.debug("********************" +company.toString());
-		companyRepository.save(company);
-		return company;
+		return companyRepository.save(company);
 	}
 
 }
