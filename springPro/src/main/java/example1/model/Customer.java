@@ -1,6 +1,5 @@
 package example1.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Basic;
@@ -14,76 +13,28 @@ import javax.validation.Valid;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-	@Data
-	@AllArgsConstructor
-	public class Customer {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private int id;
-		@Basic(optional = false)
-		@Column(nullable = false)
-		private String name;
-		@Basic(optional = false)
-		@Column(nullable = false)
-		private String password;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-		@ManyToMany
-		@Valid
-		private List<Coupon> coupons;
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private String name;
 
-		public Customer() {
-			coupons = new ArrayList<>();
-		}
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private String password;
 
-		public Customer(String name, String password, String country, String city, String address) {
-			this.name = name;
-			this.password = password;
-			this.coupons = new ArrayList<>();
-		}
+	@ManyToMany
+	@Valid
+	private List<Coupon> coupons;
 
-		public int getId() {
-			return id;
-		}
-
-		public void setId(int id) {
-			this.id = id;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public String getPassword() {
-			return password;
-		}
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
-		public List<Coupon> getCoupons() {
-			return coupons;
-		}
-
-		public void setCoupons(List<Coupon> set) {
-			this.coupons = set;
-		}
-
-		public void addCoupon(Coupon coupon) {
-			this.coupons.add(coupon);
-		}
-
-		@Override
-		public String toString() {
-			return "Customer: id=" + id + ", name=" + name + ", password=" + password + " coupons: ";
-		}
-
-	}
-
+}

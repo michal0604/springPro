@@ -23,12 +23,15 @@ public class Company {
 	@Id
 	@GeneratedValue
 	private long id;
+	
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private String name;
+	
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private String password;
+	
 	@Basic(optional = false)
 	@Column(nullable = false)
 	private String email;

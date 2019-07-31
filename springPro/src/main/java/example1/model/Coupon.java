@@ -63,6 +63,8 @@ public class Coupon {
 	@JsonIgnore
 	@Valid
 	private Company company;
+	
+	
 	@ManyToMany(mappedBy = "coupons")
 	@Valid
 	private List<Customer> customers;
