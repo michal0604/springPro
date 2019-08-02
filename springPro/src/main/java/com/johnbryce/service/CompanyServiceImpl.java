@@ -33,12 +33,12 @@ public class CompanyServiceImpl implements CompanyService {
 	@Override
 	@Transactional
 	public Coupon createCoupon(Coupon coupon) {
-		logger.debug("Create coupon"+company.toString());
+		logger.debug("Create coupon"+coupon.toString());
 		if (coupon != null) {
 			String CoupTitle = coupon.getTitle();
 			if (CoupTitle != null) {
-				Date startDate = (Date) coupon.getStart_date();
-				Date endDate = (Date) coupon.getEnd_date();
+				Date startDate = coupon.getStartDate();
+				Date endDate =  coupon.getEndDate();
 				if (startDate.getTime() <= endDate.getTime()) {
 					if (startDate.getTime() >= Utile.getCurrentDate().getTime()) {
 						if (!couponDAO.isCouponTitleExists(CoupTitle)) {
