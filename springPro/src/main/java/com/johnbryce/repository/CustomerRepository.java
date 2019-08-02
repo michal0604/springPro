@@ -1,9 +1,9 @@
-package example1.repository;
+package com.johnbryce.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import example1.model.Customer;
+import com.johnbryce.model.Customer;
 
 
 

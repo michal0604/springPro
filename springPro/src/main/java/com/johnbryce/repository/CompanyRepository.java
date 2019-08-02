@@ -1,8 +1,8 @@
-package example1.repository;
+package com.johnbryce.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import example1.model.Company;
+import com.johnbryce.model.Company;
 
 public interface  CompanyRepository extends JpaRepository<Company, Long> {
 	

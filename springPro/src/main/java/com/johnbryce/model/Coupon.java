@@ -1,4 +1,4 @@
-package example1.model;
+package com.johnbryce.model;
 
 import java.util.Date;
 import java.util.List;

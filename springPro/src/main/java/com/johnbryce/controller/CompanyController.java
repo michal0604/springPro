@@ -1,4 +1,4 @@
-package example1.controller;
+package com.johnbryce.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import example1.model.Company;
-import example1.service.CompanyService;
+import com.johnbryce.model.Company;
+import com.johnbryce.service.CompanyService;
 
 @RestController
 @RequestMapping("/company")

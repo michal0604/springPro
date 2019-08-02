@@ -1,4 +1,4 @@
-package example1.model;
+package com.johnbryce.model;
 
 public enum CouponEnum {
 	TRAVELING,
