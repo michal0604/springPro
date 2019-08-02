@@ -23,7 +23,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	@Transactional
-	public Coupon createCoupon(Coupon coupon) {
+	public Coupon createCoupon(Coupon coupon) throws CouponException {
 		logger.debug("Create coupon"+coupon.toString());
 		if (coupon != null) {
 			String CoupTitle = coupon.getTitle();
@@ -50,7 +50,6 @@ public class CompanyServiceImpl implements CompanyService {
 		}else {
 			throw new CouponException("invalid null coupon");
 		}
-		return companyRepository.save(company);
 	}
 
 }
