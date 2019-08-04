@@ -24,7 +24,11 @@ public class CompanyServiceImpl implements CompanyService {
 	private Company company;
 	Logger logger = LoggerFactory.getLogger(CompanyServiceImpl.class);
 
-	
+	@Override
+	public CouponClientService login(String name, String password) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	@Override

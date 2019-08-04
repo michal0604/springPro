@@ -4,10 +4,9 @@ import java.sql.Connection;
 
 import com.johnbryce.exception.CouponException;
 import com.johnbryce.exception.DailyCouponException;
-import com.johnbryce.facad.AdminFacad;
-import com.johnbryce.facad.CompanyFacade;
-import com.johnbryce.facad.CouponClientFacade;
-import com.johnbryce.facad.CustomerFacad;
+import com.johnbryce.service.AdminServiceImpl;
+import com.johnbryce.service.CompanyServiceImpl;
+import com.johnbryce.service.CouponClientService;
 
 /**
  * @author Eivy & MICHAL
@@ -61,26 +60,33 @@ public class CouponSystem {
 	 * @return
 	 * @throws Exception
 	 */
-	public static CouponClientFacade login(String name, String password, ClientType clientType) throws Exception {
-		CouponClientFacade couponClientFacade = null;
+	public static CouponClientService login(String name, String password, ClientType clientType) throws Exception {
+		CouponClientService couponClientService = null;
 
 		switch (clientType) {
 		case ADMIN:
-			couponClientFacade = new AdminFacad();
+			couponClientService = new AdminServiceImpl();
 			break;
 		case COMPANY:
-			couponClientFacade = new CompanyFacade();
+			couponClientService = new CompanyServiceImpl();
 			break;
 		case CUSTOMER:
-			couponClientFacade = new CustomerFacad();
+			couponClientService = new CustomerServiceImpl() {
+				
+				@Override
+				public CouponClientService login(String name, String password) throws Exception {
+					// TODO Auto-generated method stub
+					return null;
+				}
+			};
 			break;
 		default:
 			throw new CouponException("login failed");
 		}
 
-		couponClientFacade = couponClientFacade.login(name, password);
-		if (couponClientFacade != null) {
-			return couponClientFacade;
+		couponClientService = couponClientService.login(name, password);
+		if (couponClientService != null) {
+			return couponClientService;
 		} else {
 			return null;
 		}

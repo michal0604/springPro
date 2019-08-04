@@ -1,17 +1,18 @@
 package com.johnbryce.utils;
 
 import java.sql.Date;
-import java.util.Set;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.johnbryce.beans.Coupon;
-import com.johnbryce.dao.Company_CouponDAO;
-import com.johnbryce.dao.CouponDAO;
-import com.johnbryce.dao.Customer_CouponDAO;
-import com.johnbryce.dbdao.Company_CouponDBDAO;
-import com.johnbryce.dbdao.CouponDBDAO;
-import com.johnbryce.dbdao.Customer_CouponDBDAO;
+import javax.annotation.Resource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.johnbryce.exception.CouponException;
+import com.johnbryce.model.Coupon;
+import com.johnbryce.repository.CouponRepository;
+import com.johnbryce.service.CompanyServiceImpl;
 
 /**
  * @author Eivy & Michal
@@ -29,12 +30,12 @@ public class DailyCouponExpirationTask implements Runnable {
 	private static int DEBUG_DAY_ADDER = 0;
 	private static int SLEEPTIME = 24 * 1000 * 3600;
 	
-	private CouponDAO couponDAO = new CouponDBDAO();
-	private Customer_CouponDAO customer_CouponDAO = new Customer_CouponDBDAO();
-	private Company_CouponDAO company_CouponDAO = new Company_CouponDBDAO();
 	private boolean running = true;
 	private int sleepingTime = DailyCouponExpirationTask.SLEEPTIME;
-	
+	@Resource
+	private CouponRepository couponRepository;
+	Logger logger = LoggerFactory.getLogger(CompanyServiceImpl.class);
+
 	
 	private Thread dailyTaskThread;
 	
@@ -86,12 +87,10 @@ public class DailyCouponExpirationTask implements Runnable {
 					date = Utile.getCurrentDate();
 				}
 				System.out.println(date.toString() + " - Daily Task Running...");
-				Set<Coupon> allCoupons = couponDAO.getAllCoupons();
+				List<Coupon> allCoupons = couponRepository.findAll();
 				for(Coupon coupon: allCoupons) {
-					if (date.compareTo(coupon.getEnd_date()) > 0) {
-						customer_CouponDAO.removeCustomer_CouponByCoupId(coupon.getCouponId());
-						company_CouponDAO.removeCompany_CouponByCouponId(coupon.getCouponId());
-						couponDAO.removeCoupon(coupon);
+					if (date.compareTo(coupon.getEndDate()) > 0) {
+						couponRepository.delete(coupon);
 					}
 				}
 			} catch (Exception e) {

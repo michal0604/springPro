@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: SpringPro
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: testlab
+Built-By: eivy
 Implementation-Vendor-Id: com.example1
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_211
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/SpringPro
 Created-By: Maven Integration for Eclipse
