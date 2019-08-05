@@ -1,19 +1,22 @@
 package com.johnbryce.service;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchProperties;
 import org.springframework.stereotype.Service;
 
+import com.johnbryce.beans.CouponType;
 import com.johnbryce.exception.CouponException;
 import com.johnbryce.model.Company;
 import com.johnbryce.model.Coupon;
+import com.johnbryce.repository.CompanyRepository;
 import com.johnbryce.repository.CouponRepository;
 import com.johnbryce.utils.Utile;
 
@@ -21,13 +24,18 @@ import com.johnbryce.utils.Utile;
 public class CompanyServiceImpl implements CompanyService {
 	@Resource
 	private CouponRepository couponRepository;
+	private CompanyRepository companyRepository;
 	private Company company;
 	Logger logger = LoggerFactory.getLogger(CompanyServiceImpl.class);
 
 	@Override
 	public CouponClientService login(String name, String password) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		company = companyRepository.findByNameAndPassword(name, password);
+		if (company != null) {
+			return this;
+		} else {
+			return null;
+		}
 	}
 	
 	
@@ -105,6 +113,31 @@ public class CompanyServiceImpl implements CompanyService {
 		}else {
 			throw new CouponException("invalid null coupon");
 		}
+	}
+	
+	@Override
+	public Company getCompany() {
+		return company;
+	}
+	
+	@Override
+	public Coupon getCoupon(long coupId) throws Exception {
+		Optional<Coupon> findById = couponRepository.findById(coupId);
+		if (findById.isPresent() && company.getCoupons().contains(findById.get()) ) {
+			return findById.get();
+		}else {
+			throw new CouponException("is no coupon with that id in the coupmany");
+		}
+		
+	}
+	
+	@Override
+	public List<Coupon> getCoupons(){
+		return company.getCoupons();
+	}
+	
+	public Set<Coupon> getAllCouponsByType(CouponType coupType){
+		
 	}
 
 }
