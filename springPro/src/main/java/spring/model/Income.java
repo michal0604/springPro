@@ -1,15 +1,12 @@
-package com.johnbryce.model;
+package spring.model;
 
-import java.util.List;
+import java.sql.Date;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.Valid;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,25 +16,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company {
+public class Income {
 	@Id
 	@GeneratedValue
-	private long id;
-	
+  private long id;
 	@Basic(optional = false)
 	@Column(nullable = false)
-	private String name;
-	
+  private String name;
 	@Basic(optional = false)
 	@Column(nullable = false)
-	private String password;
-	
+  private Date date;
 	@Basic(optional = false)
 	@Column(nullable = false)
-	private String email;
-	
-	
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-	@Valid
-	private List<Coupon> coupons;
+  private IncomeType description;
+	@Basic(optional = false)
+	@Column(nullable = false)
+	private double amount;
 }
