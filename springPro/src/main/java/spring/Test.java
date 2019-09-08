@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 		public static void main (String[] args) {
 			ConfigurableApplicationContext applicationContext = SpringApplication.run(Test.class, args);
-			
+			System.out.println("SPRING start !");
 //			applicationContext.close();
 		}
 	}

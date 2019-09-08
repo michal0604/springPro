@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Implementation-Title: SpringPro
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: testlab
-Implementation-Vendor-Id: com.example1
+Implementation-Vendor-Id: com.spring
 Build-Jdk: 1.8.0_172
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/SpringPro

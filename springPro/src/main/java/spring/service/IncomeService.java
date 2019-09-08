@@ -1,9 +1,14 @@
 package spring.service;
 
+import java.util.List;
+
 import spring.model.Income;
 
 public interface IncomeService {
 
-	Income stroeIncome(Income income);
+	Income storeIncome(Income income);
+
+	List<Income> allIncome();
+
 
 }

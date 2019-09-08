@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import spring.model.Income;
 
 @Repository
-public interface  IncomeRepository extends JpaRepository<Income, Long> {
+public interface IncomeRepository extends JpaRepository<Income, Long> {
 
+	
 }
